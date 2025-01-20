@@ -1,0 +1,45 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "name": "Admin User",
+        "email": "admin@example.com",
+        "password": "admin123",
+        "role": "admin"
+      },
+      {
+        "id": 2,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "password": "password123",
+        "role": "shopper"
+      }
+    ],
+    "products": [
+      {
+        "id": 1,
+        "name": "Wireless Mouse",
+        "description": "Ergonomic wireless mouse with adjustable DPI.",
+        "price": 25,
+        "image": "https://example.com/images/mouse.jpg",
+        "stock": 50
+      },
+      {
+        "id": 2,
+        "name": "Mechanical Keyboard",
+        "description": "RGB mechanical keyboard with customizable keys.",
+        "price": 75,
+        "image": "https://example.com/images/keyboard.jpg",
+        "stock": 30
+      },
+      {
+        "id": 3,
+        "name": "USB-C Hub",
+        "description": "Compact USB-C hub with multiple ports.",
+        "price": 40,
+        "image": "https://example.com/images/hub.jpg",
+        "stock": 20
+      }
+    ],
+    "carts": []
+  }
