@@ -1,45 +1,103 @@
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="signup.css">
     <link rel="stylesheet" href="styles.css">
     <title>Admin Dashboard</title>
 </head>
-
 <body>
-    <div class="main">
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <div id="product-management">
+            <h2>Manage Products</h2>
+            <form id="product-form">
+                <label for="product-name">Product Name:</label>
+                <input type="text" id="product-name" name="product-name" required>
 
-        <div class="container view-home-btns">
-            <a href="index.html">Return Home</a>
-            <button>View All Products</button>
-        </div>
-        <div class="admin container">
-            <h3 style="padding-bottom: 1rem;">ADD PRODUCT</h3>
-            <form action="" class="login-form">
-                <input type="text" id="product-title" placeholder="Product Title">
-                <textarea name="" id="product-description" rows="6" placeholder="Product Description"></textarea>
-                <input type="number" id="producct-price" placeholder="Product Price">
-                <input type="file" name="product-image" id="product-image">
-                <div>
-                    <button>Add Product</button>
-                </div>
+                <label for="product-price">Price:</label>
+                <input type="number" id="product-price" name="product-price" required>
+
+                <label for="product-description">Description:</label>
+                <textarea id="product-description" name="product-description" required></textarea>
+
+                <label for="product-image">Upload Image:</label>
+                <input type="file" id="product-image" name="product-image" accept="image/*" required>
+
+                <button type="submit">Add Product</button>
             </form>
-        </div>
-        <div class="all-products">
-            <div class="product-wrapper"
-                style="border: 1px solid var(--base-bg-color);background-color: var(--base-bg-color);
-                border-radius: 0.25rem;max-width: 300px; height: auto;padding: 1rem;">
-                <img src="./images/JORDAN+MAX+AURA+6.png" alt="" srcset=""
-                    style="height: 180px; width: 100%; object-fit: cover;border-radius: 0.5rem;">
-                <h5>Jordan Max Auria 6</h5>
-                <p></p>
-                <button>Add to cart</button>
-            </div>
+
+            <h3>Product List</h3>
+            <ul id="product-list"></ul>
         </div>
     </div>
-</body>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts();
+            document.getElementById('product-form').addEventListener('submit', addProduct);
+        });
 
+        async function loadProducts() {
+            const products = await fetchData('products');
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+            products.forEach(product => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <strong>${product.name}</strong> - $${product.price} 
+                    <p>${product.description}</p>
+                    <img src="${product.image}" alt="${product.name}" style="width: 100px; height: auto;">
+                    <button onclick="editProduct(${product.id})">Edit</button>
+                    <button onclick="deleteProduct(${product.id})">Delete</button>
+                `;
+                productList.appendChild(li);
+            });
+        }
+
+        async function addProduct(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('product-name').value;
+            const price = parseFloat(document.getElementById('product-price').value);
+            const description = document.getElementById('product-description').value;
+            const imageFile = document.getElementById('product-image').files[0];
+
+            const products = await fetchData('products');
+            const newId = products.length ? products[products.length - 1].id + 1 : 1;
+
+            const reader = new FileReader();
+            reader.onload = async () => {
+                const image = reader.result;
+                await postData('products', { id: newId, name, price, description, image });
+                alert('Product added successfully!');
+                loadProducts();
+            };
+            reader.readAsDataURL(imageFile);
+        }
+
+        async function editProduct(id) {
+            const newName = prompt('Enter new product name:');
+            const newPrice = prompt('Enter new product price:');
+            const newDescription = prompt('Enter new product description:');
+
+            if (newName && newPrice && newDescription) {
+                await fetch(`http://localhost:3000/products/${id}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: newName, price: parseFloat(newPrice), description: newDescription })
+                });
+                alert('Product updated successfully!');
+                loadProducts();
+            }
+        }
+
+        async function deleteProduct(id) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                await fetch(`http://localhost:3000/products/${id}`, { method: 'DELETE' });
+                alert('Product deleted successfully!');
+                loadProducts();
+            }
+        }
+    </script>
+</body>
 </html>

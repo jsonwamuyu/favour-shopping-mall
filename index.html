@@ -1,3 +1,4 @@
+<!-- File: index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,10 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Favour Shopping Mall</title>
+    <title>Home</title>
 </head>
 
 <body>
+
+
     <div class="main">
         <!-- NAVBAR -->
         <header class="navbar-wrapper" style="position: fixed; top: 0; left: 0;right: 0;">
@@ -27,11 +30,11 @@
                 </div>
                 <nav class="account">
                     <ul class="account-links">
-                        <li><a href="#products">PRODUCTS</a></li>
+                        <li><a href="#all-products">PRODUCTS</a></li>
                         <li><a href="">ACCOUNT</a></li>
                         <!-- <li><a href="">CONTACT</a></li> -->
                     </ul>
-                    <a href="" class="cart">
+                    <a href="cart.html" class="cart">
                         <ion-icon name="cart-outline" class="icon"></ion-icon>
                         <div class="cart-count">
                             <p style="padding: 0; margin: 0; font-size: 0.6rem; color: white;">0</p>
@@ -73,68 +76,146 @@
                 </div>
             </div>
         </div>
+
         <!-- PRODUCTS DISPLAY -->
-        <div id="products" class="products-wrapper">
+        <div class="products-wrapper" id="all-products">
             <div class="container">
                 <h3 style="padding: 4rem 0;">PRODUCTS</h3>
             </div>
-            <div class="container products">
-                <div class="product-card">
-                    <img src="./images/nike-kid-impression-removebg-preview.png" alt="" srcset=""
-                        style="height: 180px; width:200px; border-radius: 0.25rem; object-fit: cover;">
-                    <h5>Nike New Impressions</h5>
-                    <p>$19.99</p>
-                    <div>
-                        <a href="" class="add-to-cart">
-                            <ion-icon name="add-outline"></ion-icon>
-                            <p>Add to Cart</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="./images/jordan-_max-aura-6-removebg-preview.png" alt="" srcset=""
-                        style="height: 180px; width:200px; border-radius: 0.25rem; object-fit: cover;">
-                    <h5>Jordan Max Aura 6</h5>
-                    <p>$79.99</p>
-                    <div>
-                        <a href="" class="add-to-cart">
-                            <ion-icon name="add-outline"></ion-icon>
-                            <p>Add to Cart</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="./images/tshirt-nike-removebg-preview.png" alt="" srcset=""
-                        style="height: 180px; width:200px; border-radius: 0.25rem; object-fit: cover;">
-                    <h5>Nike Men White Tshirt</h5>
-                    <p>$34.99</p>
-                    <div>
-                        <a href="" class="add-to-cart">
-                            <ion-icon name="add-outline"></ion-icon>
-                            <p>Add to Cart</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="./images/JORDAN+MAX+AURA+6-removebg-preview.png" alt="" srcset=""
-                        style="height: 180px; width:200px; border-radius: 0.25rem; object-fit: cover;">
-                    <h5>Jordan Max Aura 6</h5>
-                    <p>$99.99</p>
-                    <div>
-                        <a href="" class="add-to-cart">
-                            <ion-icon name="add-outline"></ion-icon>
-                            <p>Add to Cart</p>
-                        </a>
-                    </div>
-                </div>
+            <div class="container products" id="products">
+                <!-- Fetch products to appear here -->
             </div>
         </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="app.js" defer></script>
+
+    <div class="wrapper" style=" margin-top: 2rem;padding-top: 2rem;
+    padding-bottom: 4rem; background-color: #f8f9fa;">
+        <div class="container">
+            <h3>Your Cart</h3>
+
+            <div id="cart" class="" style="display: grid;grid-template-columns: 3fr 1fr;gap: 4rem;">
+                <div>
+                    <ul id="cart-items" class="products"
+                        style="display: flex;flex-direction: column;gap: 1rem; padding-top: 2rem;">
+                    </ul>
+                    
+                </div>
+                <div class="clear-checkout">
+                    <div
+                        style="width: 100%; display: flex;align-items: center;justify-content: space-between; padding: 2rem 0;">
+                        <h5>Total</h5>
+                        <h4 id="cart-total">$0</h4>
+                    </div>
+                    <button id="clear-cart-button">Clear Cart</button>
+                    <button id="checkout-button">Checkout</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const products = await fetchData('products');
+            const productList = document.getElementById('products');
+            productList.innerHTML = '';
+
+            products.forEach(product => {
+                const item = document.createElement('div');
+                item.classList = 'product-card'
+                item.innerHTML = `
+                    <img src="${product.image}" alt="" />
+                    <strong>${product.name}</strong> - $${product.price} 
+                    <button onclick="addToCart(${product.id}, '${product.name}', ${product.price})">Add to Cart</button>
+                `;
+                productList.appendChild(item);
+            });
+
+            document.getElementById('clear-cart-button').addEventListener('click', clearCart);
+            updateCartDisplay();
+        });
+
+        async function addToCart(id, name, price) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProduct = cart.find(item => item.id === id);
+
+            if (existingProduct) {
+                existingProduct.quantity++;
+            } else {
+                cart.push({ id, name, price, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+
+            cartItems.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                const li = document.createElement('div');
+                li.classList = 'cart-item'
+                li.innerHTML = `
+                    <h6>${item.name} </h6>
+                    <div style="display:flex; flex-direction:row; gap:2rem; align-items:center;">
+                        <p> $${item.price} </p> x <p class="cart-count">${item.quantity} </p>
+                    </div>
+                    <div style="display: flex; flex-direction:row; gap:1rem">
+                        <button onclick="removeFromCart(${item.id})">Remove</button>
+                        <button onclick="increaseQuantity(${item.id})">+</button>
+                        <button onclick="decreaseQuantity(${item.id})">-</button>
+                    </div>
+                `;
+                cartItems.appendChild(li);
+            });
+
+            cartTotal.textContent = `$${total}`;
+        }
+
+        function removeFromCart(id) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+
+        function increaseQuantity(id) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const product = cart.find(item => item.id === id);
+
+            if (product) {
+                product.quantity++;
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+
+        function decreaseQuantity(id) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const product = cart.find(item => item.id === id);
+
+            if (product && product.quantity > 1) {
+                product.quantity--;
+            } else if (product) {
+                cart.splice(cart.indexOf(product), 1);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            updateCartDisplay();
+        }
+    </script>
 </body>
 
 </html>

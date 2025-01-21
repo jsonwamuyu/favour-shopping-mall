@@ -1,30 +1,29 @@
+<!-- File: login.html -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="signup.css">
     <link rel="stylesheet" href="styles.css">
-    <title>Sign Up</title>
+    <title>Login</title>
 </head>
-
 <body>
-    <div class="main">
-        <div class="login-container">
-            <img src="./images/logo.png" alt="logo" srcset="" style="height: 8rem; width: auto;">
-            <h3 style="padding-bottom: 1rem;">LOGIN</h3>
-            <form action="" class="login-form">
-                <input type="email" id="email" placeholder="Email Address">
-                <input type="password" placeholder="Password">
-                <div>
-                    <button>Login</button>
-                </div>
-            </form>
-            <p class="p-y-1">Have no account? <a href="signup.html" style="color:var(--primary-color)">CREATE
-                    ACCOUNT</a></p>
-        </div>
-    </div>
-</body>
+    <div class="container">
+        <h1>Login</h1>
+        <form id="login-form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
 
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <p>New user? <a href="signup.html">Sign up</a></p>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', login);
+    </script>
+</body>
 </html>

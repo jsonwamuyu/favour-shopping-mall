@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .wrapper {
+            width: 100%;
+        }
+
+        .cart-summary-container {
+            margin: 0 auto;
+            padding: 0 2rem;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            /* gap: 2rem; */
+        }
+
+        .cart-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding-bottom: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 2rem;
+            /* align-items: center; */
+            background-color: var(--base-bg-color);
+            padding: 0.25rem 1rem;
+        }
+
+        .cart-item__details {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .cart-item__price {
+            display: grid;
+            place-content: center;
+        }
+
+        .cart-total {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-top: 2px solid #f8f9fa;
+            padding: 1rem;
+            /* padding-right: 1rem; */
+        }
+
+        .return-home {
+            height: 3rem;
+            width: 3rem;
+            border-radius: 50%;
+            border: 1px solid var(--primary-color);
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            color: var(--base-bg-color);
+            cursor: pointer;
+        }
+
+        .logo-cart {
+            width: 100%;
+            display: grid;
+            place-content: center;
+        }
+    </style>
+    <title>Cart</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="cart-summary-container">
+            <div class="logo-cart">
+                <a href="index.html">
+                    <img src="./images/logo.png" alt="" style="width: 150px; height: 150px;"></a>
+            </div>
+            <a href="index.html" class="return-home">
+                <ion-icon name="chevron-back-outline" class="icon"></ion-icon>
+            </a>
+
+            <h3 style="padding-top:2rem; padding-bottom: 1rem;">Cart</h3>
+            <div class="cart-summary">
+                <div class="cart-item">
+                    <div class="cart-item__details">
+                        <img src="./images/JORDAN+MAX+AURA+6.png" alt="" srcset=""
+                            style="width: 4rem;height: 4rem; border-radius: 50%;">
+                        <h6>Jordan Max Air 6</h6>
+                        <div class="add-remove-item">
+
+                        </div>
+                    </div>
+                    <div class="cart-item__price">
+                        <h6 style="margin: 0; padding: 0;">$23.98</h6>
+                    </div>
+                </div>
+                <div class="cart-item">
+                    <div class="cart-item__details">
+                        <img src="./images/JORDAN+MAX+AURA+6.png" alt="" srcset=""
+                            style="width: 5rem;height: 5rem; border-radius: 50%;">
+                        <h6>Jordan Max Air 6</h6>
+                        <div class="add-remove-item">
+
+                        </div>
+                    </div>
+                    <div class="cart-item__price">
+                        <h6 style="margin: 0; padding: 0;">$23.98</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-total">
+                <h4>Total</h4>
+                <h3>$11.9</h3>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

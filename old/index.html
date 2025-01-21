@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Favour Shopping Mall</title>
+</head>
+
+<body>
+    <div class="main">
+        <!-- NAVBAR -->
+        <header class="navbar-wrapper" style="position: fixed; top: 0; left: 0;right: 0;">
+            <nav class="container navbar">
+                <!-- LOGO -->
+
+                <a href=""><img src="./images/logo.png" alt="" srcset="" style="height: 5rem; width: auto;"></a>
+
+                <div class="search-product">
+                    <form action="" class="search-form">
+                        <input type="text" name="" id="search" placeholder="Search product...">
+                    </form>
+                    <div style="color: var(--primary-color);">
+                        <ion-icon name="search-outline" class="icon"></ion-icon>
+                    </div>
+                </div>
+                <nav class="account">
+                    <ul class="account-links">
+                        <li><a href="#all-products">PRODUCTS</a></li>
+                        <li><a href="">ACCOUNT</a></li>
+                        <!-- <li><a href="">CONTACT</a></li> -->
+                    </ul>
+                    <a href="cart.html" class="cart">
+                        <ion-icon name="cart-outline" class="icon"></ion-icon>
+                        <div class="cart-count">
+                            <p style="padding: 0; margin: 0; font-size: 0.6rem; color: white;">0</p>
+                        </div>
+                    </a>
+                </nav>
+            </nav>
+        </header>
+        <!-- HERO -->
+        <div class="hero-wrapper" style="margin-top: 8rem;">
+            <div class="container">
+                <h3 style="padding-top: 2rem;"><span class="highlight">NEWEST</span> ARRIVALS</h3>
+            </div>
+            <div class="hero container">
+                <div class="hero-imgs">
+                    <img src="./images/jordan- max-aura-6.jpg" alt=""
+                        style="height: 280px; width:100%; object-fit: cover;">
+                    <div class="hero-imgs__imgs">
+                        <img src="./images/jordan-aura-mini.png" alt="" srcset=""
+                            style="height: 138px; width: 200px; object-fit: cover;">
+                        <img src="./images/jordan-aura-mini1.png" alt=""
+                            style="height: 138px; width: 200px; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="hero-details">
+                    <h4>Jordan Max Aura 6</h4>
+                    <p>Every. Single. Day. That's what the Max Aura 6 is made for. It's the best of the AJ14, including
+                        the quilted upper, unmistakable midsole and hidden eyelets, remixed into a new design that
+                        prioritizes cushioned comfort. As a finishing touch, the AJ14 Jumpman crest legitimizes your
+                        look.
+                    </p>
+                    <div class="price">
+                        <h5 class="">$230.99</h5>
+                    </div>
+                    <div class="add-to-cart">
+                        <ion-icon name="add-outline" class="icon"></ion-icon>
+                        <p>Add to cart</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PRODUCTS DISPLAY -->
+        <div class="products-wrapper" id="all-products">
+            <div class="container">
+                <h3 style="padding: 4rem 0;">PRODUCTS</h3>
+            </div>
+            <div class="container products" id="products">
+                <!-- Fetch products to appear here -->
+            </div>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="test.js" defer></script>
+</body>
+
+</html>
