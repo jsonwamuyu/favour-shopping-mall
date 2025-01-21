@@ -5,21 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        form input{
+            padding: 1rem 2rem;
+            background-color: transparent;
+            border: 2px solid var(--base-bg-color);
+            outline: none;
+        }
+        #login-form{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .logo-img{
+            height: 8rem; width: auto;
+        }
+        .login-container{
+            margin: 0 auto;
+            max-width: 450px;
+        }
+    </style>
+
     <title>Login</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Login</h1>
+    <div class="login-container">
+        <img src="./images/logo.png" alt="logo" srcset="" class="logo-img">
+        <h1 style="margin-bottom: 2rem;">Login</h1>
         <form id="login-form">
-            <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
-            <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="submit">Login</button>
+            <button type="submit" style="margin-top: 1rem;">Login</button>
         </form>
-        <p>New user? <a href="signup.html">Sign up</a></p>
+        <p style="font-size: 0.9rem; margin-top: 2rem;">Already have an account? <a href="signup.html">Sign Up</a></p>
+
     </div>
     <script src="app.js"></script>
     <script>

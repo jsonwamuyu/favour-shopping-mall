@@ -83,6 +83,6 @@ async function fetchData(resource) {
       return sum + product.price * item.quantity;
     }, 0);
   
-    document.getElementById("cart-total").innerText = `Total: $${total}`;
+    document.getElementById("cart-total").innerText = `$${total}`;
   }
   
