@@ -1,0 +1,23 @@
+const jsonServer = require('json-server');
+const server = jsonServer.create();
+const router = jsonServer.router('db.json');
+const middlewares = jsonServer.defaults();
+
+server.use(middlewares);
+server.use(jsonServer.bodyParser);
+
+// Example Middleware
+server.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  const user = router.db.get('users').find({ email, password }).value();
+  if (user) {
+    res.status(200).json({ id: user.id, role: user.role });
+  } else {
+    res.status(401).json({ error: 'Invalid credentials' });
+  }
+});
+
+server.use(router);
+server.listen(3000, () => {
+  console.log('JSON Server is running');
+});

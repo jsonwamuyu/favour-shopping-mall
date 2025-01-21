@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Phone E-Commerce</title>
+    <style>
+        :root {
+            --primary-color: #FF8C42; /* Warm Orange */
+            --secondary-color: #FFC107; /* Amber */
+            --base-bg-color: #FFF8E1; /* Light Warm Yellow */
+            --admin-bg-color: #FFF3E0; /* Soft Peach */
+            --text-primary: #5D4037; /* Warm Brown */
+            --text-secondary: #8D6E63; /* Soft Brown */
+            --error-color: #D84315; /* Deep Orange */
+            --accent-hover: #FF7043; /* Lighter Orange */
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--base-bg-color);
+            color: var(--text-primary);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-danger {
+            background-color: var(--error-color);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-error {
+            color: var(--error-color);
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px;
+            background-color: var(--base-bg-color);
+        }
+
+        .product-card h2 {
+            margin: 0 0 10px 0;
+        }
+
+        .product-card button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mobile Phones Store</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Cart</a>
+            <a href="#">Login</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Welcome to the Mobile Phones Store</h2>
+        <p>Explore our collection of the latest smartphones.</p>
+        
+        <div class="product-card">
+            <h2>Phone Name</h2>
+            <p>Price: $999</p>
+            <button class="btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <h2>Phone Name 2</h2>
+            <p>Price: $799</p>
+            <button class="btn">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        // Example JavaScript for validation and cart persistence
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add event listeners to buttons
+            const buttons = document.querySelectorAll('.btn');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    alert('Item added to cart!');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
