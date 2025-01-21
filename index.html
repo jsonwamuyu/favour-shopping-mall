@@ -32,9 +32,8 @@
                     <ul class="account-links">
                         <li><a href="#all-products">PRODUCTS</a></li>
                         <li><a href="">ACCOUNT</a></li>
-                        <!-- <li><a href="">CONTACT</a></li> -->
                     </ul>
-                    <a href="cart.html" class="cart">
+                    <a href="#my-cart" class="cart">
                         <ion-icon name="cart-outline" class="icon"></ion-icon>
                         <div class="cart-count">
                             <p style="padding: 0; margin: 0; font-size: 0.6rem; color: white;">0</p>
@@ -88,12 +87,12 @@
         </div>
     </div>
 
-    <div class="wrapper" style=" margin-top: 2rem;padding-top: 2rem;
+    <div class="wrapper" id="my-cart"  style=" margin-top: 2rem;padding-top: 2rem;
     padding-bottom: 4rem; background-color: #f8f9fa;">
         <div class="container">
             <h3>Your Cart</h3>
 
-            <div id="cart" class="" style="display: grid;grid-template-columns: 3fr 1fr;gap: 4rem;">
+            <div id="cart" class="cart-details" >
                 <div>
                     <ul id="cart-items" class="products"
                         style="display: flex;flex-direction: column;gap: 1rem; padding-top: 2rem;">
@@ -124,9 +123,12 @@
                 const item = document.createElement('div');
                 item.classList = 'product-card'
                 item.innerHTML = `
-                    <img src="${product.image}" alt="" />
-                    <strong>${product.name}</strong> - $${product.price} 
-                    <button onclick="addToCart(${product.id}, '${product.name}', ${product.price})">Add to Cart</button>
+                    <img src="${product.image}" alt="" style="height:200px;width:200px; object-fit:contain;" />
+                    <h6>${product.name}</h6> 
+                    <p>$${product.price} </p>
+                    <div>
+                        <button onclick="addToCart(${product.id}, '${product.name}', ${product.price})">Add to Cart</button>
+                    </div>
                 `;
                 productList.appendChild(item);
             });
