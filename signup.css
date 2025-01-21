@@ -18,7 +18,7 @@
     padding-bottom: 1rem;
 }
 
-.login-form input{
+.login-form input, textarea{
     background-color: #f8f9fa;
     border: 1px solid var(--base-bg-color);
     padding: 0.8rem 1rem;
