@@ -1,33 +1,91 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Admin Dashboard</title>
+
+    <style>
+        .para-clamp {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            /* Number of lines to show */
+            -webkit-box-orient: vertical;
+        }
+
+        form input,
+        textarea {
+            padding: 1rem 2rem;
+            background-color: transparent;
+            border: 2px solid var(--base-bg-color);
+            outline: none;
+        }
+
+        .product-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-logo {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        @media screen and (min-width:600px) {
+            #product-form {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .admin-logo {
+            flex-direction: row;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>Admin Dashboard</h1>
+        <div class="admin-logo">
+            <img src="./images/logo.png" alt="" srcset="" style="width:100px; height:100px">
+
+            <h1>Admin Dashboard</h1>
+        </div>
+
+
         <div id="product-management">
-            <h2>Manage Products</h2>
-            <form id="product-form">
-                <label for="product-name">Product Name:</label>
-                <input type="text" id="product-name" name="product-name" required>
+            <h4>Add a Product</h4>
+            <form id="product-form" class="product-form">
+                <input type="text" id="product-name" name="product-name" placeholder="Product name" required>
 
-                <label for="product-price">Price:</label>
-                <input type="number" id="product-price" name="product-price" required>
+                <input type="number" id="product-price" name="product-price" placeholder="Price" required>
 
-                <label for="product-description">Description:</label>
-                <textarea id="product-description" name="product-description" required></textarea>
+                <textarea id="product-description" name="product-description" placeholder="Description" rows="4"
+                    required></textarea>
 
-                <label for="product-image">Upload Image:</label>
                 <input type="file" id="product-image" name="product-image" accept="image/*" required>
+                <div>
 
-                <button type="submit">Add Product</button>
+                    <button type="submit">Add Product</button>
+
+                </div>
             </form>
 
+
+        </div>
+
+        <div class="display-products" style="margin-top: 5rem; margin-bottom: 2rem;">
             <h3>Product List</h3>
-            <ul id="product-list"></ul>
+            <ul id="product-list" class="product-list"
+                style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;"></ul>
         </div>
     </div>
     <script src="app.js"></script>
@@ -45,7 +103,7 @@
                 const li = document.createElement('li');
                 li.innerHTML = `
                     <strong>${product.name}</strong> - $${product.price} 
-                    <p>${product.description}</p>
+                    <p class="para-clamp">${product.description}</p>
                     <img src="${product.image}" alt="${product.name}" style="width: 100px; height: auto;">
                     <button onclick="editProduct(${product.id})">Edit</button>
                     <button onclick="deleteProduct(${product.id})">Delete</button>
@@ -100,4 +158,5 @@
         }
     </script>
 </body>
+
 </html>
