@@ -24,6 +24,11 @@
             margin: 0 auto;
             max-width: 450px;
         }
+        .error-message{
+            color:var(--error-color);
+            padding-bottom: 0.5rem;
+            font-size: 0.8rem;
+        }
     </style>
 
     <title>Login</title>
@@ -32,10 +37,11 @@
     <div class="login-container">
         <img src="./images/logo.png" alt="logo" srcset="" class="logo-img">
         <h1 style="margin-bottom: 2rem;">Login</h1>
+        <div class="error-message" id="error-message"></div>
         <form id="login-form">
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" placeholder="Email Address" >
 
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password"  placeholder="Password">
 
             <button type="submit" style="margin-top: 1rem;">Login</button>
         </form>
