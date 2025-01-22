@@ -130,6 +130,7 @@
                     </div>
                     <button id="clear-cart-button">Clear Cart</button>
                     <button id="checkout-button">Checkout</button>
+                    <div id="checkout-message"></div>
                 </div>
             </div>
         </div>
@@ -196,10 +197,10 @@
             // check whether the user is logged in 
             const loggedInUser = localStorage.getItem('loggedInUser');
             if (loggedInUser) {
-                authButton.textContent = "Login"
+                authButton.textContent = "Logout"
                 authButton.addEventListener("click", logout)
             } else {
-                authButton.textContent = "Logout"
+                authButton.textContent = "Login"
                 authButton.addEventListener('click', () => {
                     window.location.href = 'login.html'
                 })
@@ -311,6 +312,32 @@
             updateCartDisplay();
             updateCartBadge();
 
+        }
+
+        document.getElementById("checkout-button").addEventListener('click', checkout)
+
+        function checkout() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                showCheckoutMessage("Your cart is empty. Add items to checkout");
+                return;
+            }
+            //simulate checkout proocess
+            localStorage.removeItem('cart')
+            updateCartDisplay()
+            showCheckoutMessage("Checkout success! Thank you for your purchase.")
+        }
+
+        function showCheckoutMessage(message) {
+            const messageContainer = document.getElementById("checkout-message");
+            messageContainer.textContent = message;
+            messageContainer.style.display = 'block';
+            messageContainer.style.fontSize = '0.9rem';
+            messageContainer.style.paddingTop = "1rem"
+
+            setTimeout(() => {
+                messageContainer.style.display = 'none'
+            }, 5000)
         }
 
         function clearCart() {

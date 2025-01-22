@@ -22,7 +22,7 @@ function showError(message) {
 
   setTimeout(() => {
     errorMessage.style.display = 'none';
-  }, 10000);
+  }, 3000);
 }
 
 

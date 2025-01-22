@@ -74,9 +74,9 @@
     },
     {
       "id": "3",
-      "name": "Nike Men White Tshirt",
-      "description": "Ergonomic wireless mouse with adjustable DPI.",
-      "price": 25.99,
+      "name": "t-shirt",
+      "description": "black material",
+      "price": 500,
       "image": "./images/tshirt-nike-removebg-preview.png"
     },
     {
