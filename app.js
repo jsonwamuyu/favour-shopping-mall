@@ -59,7 +59,7 @@ async function signup(event) {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  if(!fullname || !email| !password ){
+  if (!fullname || !email | !password) {
     showError("All fields are required.")
     return;
   }
@@ -106,3 +106,6 @@ async function calculateCartTotal() {
 
   document.getElementById("cart-total").innerText = `$${total}`;
 }
+
+
+module.exports = { login, showError }
