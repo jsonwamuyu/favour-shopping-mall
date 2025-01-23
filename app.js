@@ -29,24 +29,31 @@ function showError(message) {
 // Login Logic
 async function login(event) {
   event.preventDefault();
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
   if (!email || !password) {
-    showError("All fields are required");
+    showError("All fields are required.");
     return;
   }
 
-  // Now that we are sure password and email fields are not empty. Fetch all the users from database(LocalStorage or server)
-  const users = await fetchData("users");
-  const user = users.find(u => u.email === email && u.password === password);
+  try {
+    // Now that we are sure password and email fields are not empty. Fetch all the users from database(LocalStorage or server)
+    const users = await fetchData("users");
+    const user = users.find(u => u.email === email && u.password === password);
 
-  // If there exist a user with such credentials
-  if (user) {
-    localStorage.setItem('loggedInUser', JSON.stringify(user));
-    window.location.href = user.role === "admin" ? "admin.html" : "index.html"
-  } else {
-    showError("Inavalid email or password.")
+    // If there exist a user with such credentials
+    if (user) {
+      localStorage.setItem('loggedInUser', JSON.stringify(user));
+      window.location.href = user.role === "admin" ? "admin.html" : "index.html"
+    } else {
+      showError("Inavalid email or password.")
+    }
+
+  } catch (error) {
+    console.log("An error occured while login")
+    showError("Unexpected error occured. Please try again.")
   }
 }
 
@@ -108,4 +115,4 @@ async function calculateCartTotal() {
 }
 
 
-module.exports = { login, showError }
+module.exports = { login, showError,fetchData }
