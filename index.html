@@ -55,130 +55,17 @@
 <body>
 
 
-    <div class="main">
-        <!-- NAVBAR -->
-        <header class="navbar-wrapper" style="position: fixed; top: 0; left: 0;right: 0;">
-            <nav class="container navbar">
-                <!-- LOGO -->
-
-                <a href=""><img src="./images/logo.png" alt="" srcset="" style="height: 5rem; width: auto;"></a>
-
-                <div class="search-product">
-                    <form action="" class="search-form">
-                        <input type="text" name="" id="search" placeholder="Search product...">
-                    </form>
-                    <div style="color: var(--primary-color);">
-                        <ion-icon name="search-outline" class="icon"></ion-icon>
-                    </div>
-                </div>
-                <nav class="account">
-                    <ul class="account-links">
-                        <li><a href="#all-products">Products</a></li>
-                        <li id="auth-button"><a href=""></a></li>
-                    </ul>
-                    <a href="#my-cart" class="cart">
-                        <ion-icon name="cart-outline" class="icon"></ion-icon>
-                        <div class="cart-count" id="cart-badge-container">
-                            <p id="cart-count" style="padding: 0; margin: 0; font-size: 0.6rem; color: white;">0</p>
-                        </div>
-                    </a>
-                </nav>
-            </nav>
-        </header>
-        <!-- HERO -->
-        <div class="hero-wrapper" style="margin-top: 4rem;">
-            <div class="hero container">
-                <img src="./images/jordan- max-aura-6.jpg" alt="" style="height: 410px; width:100%; object-fit: cover;">
-                <div class="preview">
-                    <img src="./images/jordan-aura-mini.png" alt="" srcset=""
-                        style="height: 50%; width: 100%; object-fit: cover;">
-                    <img src="./images/jordan-aura-mini1.png" alt=""
-                        style="height: 50%; width: 100%; object-fit: cover;">
+    <div class="wrapper">
+        <div class="" style="margin: auto;max-width: 600px;padding-top: 10rem;">
+            <div style="justify-content: center;">
+                <h3 style="max-width: 450px;padding:  2rem 0;">Welcome to Employee Management System</h3>
+                <div class=""
+                    style="width: 100%; max-width: 450px; display: flex;flex-direction: row;justify-content: space-between;gap: 2rem; align-items: center;">
+                    <a href="/login.html" class="btn btn-primary">Login</a>
+                    <a href="./signup.html" class="btn btn-secondary">Create Account</a>
                 </div>
             </div>
         </div>
-
-        <!-- PRODUCTS DISPLAY -->
-        <div class="products-wrapper" id="all-products">
-            <div class="container">
-                <h3 style="padding: 4rem 0;">PRODUCTS</h3>
-            </div>
-            <div class="container products" id="products">
-                <!-- Fetch products to appear here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- YOUR CART -->
-    <div class="wrapper" id="my-cart" style=" margin-top: 2rem;padding-top: 2rem;
-    padding-bottom: 4rem; background-color: var(--base-bg-color)">
-        <div class="container">
-            <h3>Your Cart</h3>
-
-            <div id="cart" class="cart-details">
-                <div>
-                    <ul id="cart-items" class="products"
-                        style="display: flex;flex-direction: column;gap: 1rem; padding-top: 2rem;">
-                    </ul>
-
-                </div>
-                <div class="clear-checkout">
-                    <div
-                        style="width: 100%; display: flex;align-items: center;justify-content: space-between; padding: 2rem 0;">
-                        <h5>Total</h5>
-                        <h4 id="cart-total">$0</h4>
-                    </div>
-                    <button id="clear-cart-button">Clear Cart</button>
-                    <button id="checkout-button">Checkout</button>
-                    <div id="checkout-message"></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- FOOTER -->
-    <div class="wrapper" style=" background-color: #f8f9fa;">
-        <footer class="container"
-            style="display: flex;gap: 4rem; padding-bottom: 1rem;justify-content: space-between;padding-top: 3rem;">
-            <div style="display: flex;flex-direction: row; gap: 2rem;align-items: center;">
-                <img src="/images/logo.png" alt="logo" srcset="" style="height:100px; width: auto;">
-                <p style="max-width: 300px;">We offfer the best deals in town. come and witness the magic</p>
-            </div>
-
-            <div style=" display: flex;flex-direction: column;gap: 1rem;">
-                <h5>Quick Links</h5>
-                <div style="display: flex;flex-direction: column;gap: 0.5rem;">
-                    <a href="">Products</a>
-                    <a href="">Help</a>
-                    <a href="">About Us</a>
-                </div>
-            </div>
-            <div style="display: flex;flex-direction: column;gap: 1rem;">
-                <h5>Get Help</h5>
-                <div style="display: flex;flex-direction: column;gap: 0.5rem;">
-                    <a href="">Contact Us</a>
-                    <a href="">Customers Care</a>
-                    <a href="">FAQs</a>
-                </div>
-            </div>
-            <div style="display: flex;flex-direction: column;gap: 1rem;">
-                <h5>Socials</h5>
-                <div style="display: flex;flex-direction: column;gap: 0.5rem;">
-                    <a href="">Facebook</a>
-                    <a href="">Intagram</a>
-                    <a href="">Twitter</a>
-                </div>
-            </div>
-        </footer>
-        <div class="" style="border-top: 2px solid #f8f9fa; padding-top: 1rem;padding-bottom: 1rem;">
-            <div class="footer container">
-                <p style="font-size: 0.9rem;">All rigths reserved &copy;2023</p>
-                <p style="font-size: 0.8rem;">Build <span><ion-icon name="heart" style="color: red;"></ion-icon></span>
-                    by JOHNSON WAMUYU</p>
-            </div>
-        </div>
-
     </div>
     <script src="app.js"></script>
     <script>

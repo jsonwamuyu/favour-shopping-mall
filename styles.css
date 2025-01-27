@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Manrope:wght@400;500&display=swap');
 
 
 :root {
-    --primary-color: #f68b1e;
+    --primary-color: #06bb06;
     /* Highlight Orange */
-    --secondary-color: #FFD54F;
+    --secondary-color: #3ef53e;
     /* Light Amber */
     --base-bg-color: #FFF3E0;
     /* Warm Peach */
@@ -16,7 +16,7 @@
     /* Softer Brown */
     --error-color: #E64A19;
     /* Reddish Orange */
-    --accent-hover: #FFAB40;
+    --accent-hover: #0af00a;
     /* Brighter Orange */
 }
 
@@ -27,10 +27,11 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 1rem;
     line-height: 1.6;
     color: var(--text-primary);
+    background-color: #f4f4f9;
 }
 
 .highlight {
@@ -189,7 +190,7 @@ li a {
     font-size: 0.9rem;
 }
 
-form input {
+form input, select, textarea {
     width: 100%;
     padding: 0 0.5rem;
     outline: none;

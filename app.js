@@ -46,7 +46,9 @@ async function login(event) {
     // If there exist a user with such credentials
     if (user) {
       localStorage.setItem('loggedInUser', JSON.stringify(user));
-      window.location.href = user.role === "admin" ? "admin.html" : "index.html"
+      if(user.role === "admin") return window.location.href = "admin.html"
+      if(user.role === "manager") return window.location.href = "manager.html"
+      if(user.role === "employee") return window.location.href = "employee.html"
     } else {
       showError("Inavalid email or password.")
     }
@@ -62,11 +64,12 @@ async function login(event) {
 // Signup Logic
 async function signup(event) {
   event.preventDefault();
-  const fullname = document.getElementById("fullname").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+  const role = document.getElementById("role").value;
 
-  if (!fullname || !email | !password) {
+
+  if (!role || !email | !password) {
     showError("All fields are required.")
     return;
   }
@@ -77,42 +80,8 @@ async function signup(event) {
     return;
   }
 
-  const newUser = { fullname, email, password, role: "user" };
+  const newUser = { email, password, role };
   await postData("users", newUser);
   // alert("Signup successful! Redirecting to login...");
   window.location.href = "login.html";
 }
-
-// Add to Cart
-async function addToCart(productId) {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const cart = await fetchData("cart");
-
-  const existingItem = cart.find(item => item.userId === user.id && item.productId === productId);
-  if (existingItem) {
-    existingItem.quantity++;
-  } else {
-    cart.push({ userId: user.id, productId, quantity: 1 });
-  }
-
-  await postData("cart", cart);
-  alert("Item added to cart");
-}
-
-// Calculate Cart Total
-async function calculateCartTotal() {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const cart = await fetchData("cart");
-  const products = await fetchData("products");
-
-  const userCart = cart.filter(item => item.userId === user.id);
-  const total = userCart.reduce((sum, item) => {
-    const product = products.find(p => p.id === item.productId);
-    return sum + product.price * item.quantity;
-  }, 0);
-
-  document.getElementById("cart-total").innerText = `$${total}`;
-}
-
-
-module.exports = { login, showError,fetchData }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Manager</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="admin-nav"
+            style="display: flex;flex-direction: row-reverse; justify-content: space-between;width: 100%; align-items: center;">
+            <div>
+                <button id="logout-button">Logout</button>
+            </div>
+            <div class="admin-logo">
+                <h1>Manager role</h1>
+            </div>
+    
+            
+        </div>
+        <div class="display-products" style="margin-top: 5rem; margin-bottom: 2rem;">
+            <h3>Employees List</h3>
+            <ul id="employees-list" class="product-list">
+                <!-- Display products here -->
+            </ul>
+        </div>
+        </div>
+    </div>
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoutButton = document.getElementById('logout-button');
+            if (logoutButton) {
+                logoutButton.addEventListener('click', logout);
+            }
+
+            loadEmployees();
+        });
+
+        async function loadEmployees() {
+            const employees = await fetchData('employees');
+            console.log(employees)
+            const employeeList = document.getElementById('employees-list');
+            console.log(employeeList)
+            employeeList.innerHTML = '';
+            employees.forEach(employee => {
+
+                console.log(employee.name, "Employee");
+                const li = document.createElement('li');
+                li.innerHTML = `
+                <div style="display:flex; flex-direction:column; gap:1rem; border: 2px solid #f8f9fa;
+                 border-radius:1rem;padding:1rem;">
+                    <p class="heading-clamp"> Name:<strong>${employee.name}</strong></p>
+                    <p class="para-clamp">Department: ${employee.department}</p>
+                    <p class="para-clamp">Position: ${employee.position}</p>
+                    <p>Salary: $${employee.salary} </p>
+                    
+              </div>
+                `;
+                employeeList.appendChild(li);
+            });
+        }
+
+        function logout() {
+            if (confirm("Are you sure you want to logout?")) {
+                // Clear local storage or session data
+                localStorage.removeItem('loggedInUser');
+                localStorage.removeItem('cart'); // Clear cart data
+
+                // Redirect to login page
+                window.location.href = "login.html";
+            }
+        }
+
+
+    </script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>

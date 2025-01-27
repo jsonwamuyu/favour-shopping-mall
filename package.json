@@ -11,5 +11,8 @@
   },
   "jest": {
     "testEnvironment": "jsdom"
+  },
+  "dependencies": {
+    "nodemailer": "^6.10.0"
   }
 }

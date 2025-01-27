@@ -58,6 +58,31 @@ describe("Login Function Tests", () => {
 //     expect(window.location.href).toBe("admin.html");
 //   });
 
+
+  it("should log in as admin when valid admin credentials are provided", async () => {
+    // Mocking fetchData to return a valid admin user
+    fetchData.mockResolvedValueOnce([
+        { email: "admin@example.com", password: "adminpass", role: "admin" },
+    ]);
+
+    // Setting input values for email and password
+    document.getElementById("email").value = "admin@example.com";
+    document.getElementById("password").value = "adminpass";
+
+    const event = { preventDefault: jest.fn() }; // Mocking event
+    await login(event); // Call login with the mock event
+
+    // Check if localStorage.setItem was called with correct parameters
+    expect(localStorage.setItem).toHaveBeenCalledWith(
+        "loggedInUser",
+        expect.stringContaining("admin@example.com")
+    );
+
+    // Check if redirection happened (if applicable)
+    expect(window.location.href).toBe("admin.html");
+});
+
+
   it("should show error for invalid credentials", async () => {
     fetchData.mockResolvedValueOnce([
       { email: "user@example.com", password: "userpass", role: "user" },
